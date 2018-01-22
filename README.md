@@ -1,2 +1,2 @@
 # Flight-coding
-Determining bird flight performances 
+Determining bird flight performance parameters 
