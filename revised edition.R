@@ -1,4 +1,4 @@
-setwd("~/Documents/Project/R-Coding/npos1")
+
 
 # R-FUNCTION FOR CALCULATING BIRD FLIGHT PERFORMANCE PARAMETERS##
 # SIX FUNCTIONS HAVE BEEN GIVEN IN THIS SCRIPT #
@@ -249,29 +249,3 @@ PowerCurve = function(FlightPerformance, TAS, TAS2){
 }
 # END OF FUNCTION 6
 
-#######################################################################################################################
-# ILLUSTRATION OF THE ABOVE FUNCTIONS
-# sample wind data
-WindSpeed.x = seq(0.05, 1, by = 0.02)
-WindSpeed.y = seq(0.05, 1, by = 0.02)
-WindSpeed.z = seq(0.05, 1, by = 0.02)
-df1=read.csv("test data.csv") 
-df = data.frame(t=df1$t, x=df1$x, y=df1$y, z=df1$z, WindSpeed.x,WindSpeed.y,WindSpeed.z) # sample data
-
-# implement function 1
-BirdPa = BirdMorphParam(BMass=0.043,WSpan=0.4,WArea=0.0171,C_db=0.1)
-
-# implement function 2
-FSC = FlightSpeedComponents(t=df$t, x=df$x, y=df$y, z=df$z)
-
-# implement function 3
-TT = TAS(FSC, WindSpeed.x, WindSpeed.y, WindSpeed.z)
-
-# implement function 4
-TT2= TAS2(FSC,10,0.1,0.1)
-
-# implement function 5
-FP = FlightPerformance(BirdPa,FSC, TT, t=df$t, x=df$x, y=df$y, z=df$z, C_l=0.5, C_t=0.1)
-
-# implement function 6
-PC = PowerCurve(FP,TT)
